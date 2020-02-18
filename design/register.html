@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<style>
+    body
+    {
+        background: url(img/account-bg.jpg) no-repeat top center;
+    }
+    .form
+    {
+        margin-top:160px;
+        background: rgba(255, 255, 255, 0.4);
+        height:500px;
+    }
+    h1
+    {
+        margin-top: 20px;
+        text-align: center;
+    }
+    form
+    {
+        margin-top:35px;
+    }
+    form input
+    {
+        margin-bottom:20px;
+    }
+    .submit-btn
+    {
+        margin-top:20px;
+        font-size:20px;
+        background-color: #409eff;
+        border:none;
+        color: white;
+    }
+    .submit-btn:hover
+    {
+        background:rgba(30, 144, 255, 1);
+        color: #fff;
+    }
+    #verification-code
+    {
+        width:50%;
+    }
+    .code-get-btn
+    {
+        float: right;
+        font-size:15px;
+        width:35%;
+        height:34px;
+    }
+    @media screen and (max-width:768px) {
+        .form
+        {
+            background: none;
+            margin-top:20px;
+        }
+
+    }
+</style>
+<body>
+    <!--[if lt IE 8]><p class="browser-tips">您的浏览器版本过低，请升级浏览器获得更好的体验<p><![endif]-->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10">
+                    <a href="index.html" class="logo"></a>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid form col-md-4 col-sm-8 col-md-offset-4 col-sm-offset-2">
+        <h1 class="col-md-12">注册</h1>
+        <form class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
+            <div class="form-group">
+                <input type="text" class="form-control" id="organization" placeholder="请输入在线教育机构/学校">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm-password" placeholder="请再次输入密码">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="phone-number" placeholder="请输入手机号码">
+            </div>
+            <div class="form-group" style="padding-left:0;">
+                <button type="button" class="btn btn-default code-get-btn">获取验证码</button>
+                <input type="text" class="form-control" id="verification-code" placeholder="请输入验证码">
+            </div>
+            <button type="submit" class="btn btn-default col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2 submit-btn">注 册</button>
+        </form>
+    </div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

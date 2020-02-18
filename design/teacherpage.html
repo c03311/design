@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dateTime.css">
+    <link rel="stylesheet" href="dist/summernote.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body
+        {
+            background: #fdfcf8;
+        }
+        header
+        {
+            border-bottom:1px solid #d3d3d3;
+            background: white;
+        }
+        .main
+        {
+            height:auto;
+            background: white;
+            border-left:1px solid #d3d3d3;
+            border-right:1px solid #d3d3d3;
+            border-bottom:1px solid #d3d3d3;
+        }
+        .section1
+        {
+            display: flex;
+            height:200px;
+            border-bottom: 1px solid #d3d3d3
+        }
+        .chathead
+        {
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin-top:40px;
+        }
+        .user-info
+        {
+            margin-left:30px;
+        }
+        .user-name
+        {
+            margin-top:40px;
+            margin-bottom:0;
+            padding-bottom:10px;
+            border-bottom:1px solid #ddd;
+        }
+        .test-info 
+        {
+            margin-top: 25px;
+
+        }
+        .test-info span
+        {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .section2
+        {
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .s2-btns
+        {
+            padding:0;
+            display: flex;
+            margin-bottom: 0;
+            justify-content: space-between;
+            list-style-type: none;
+        }
+        .s2-btns li
+        {
+            display: block;
+            width: 25%;
+            height: 50px;
+            text-align: center;
+            font-size: 22px;
+            line-height: 50px;
+            border-right: 1px solid #d3d3d3;
+            cursor: pointer;
+        }
+        .s2-btns li:hover
+        {
+            color: white;
+            background-color: #d3d3d3;
+        }
+        .s2-btns li:nth-child(1)
+        {
+            border-left: 1px solid #d3d3d3;
+        }
+        .s2-btns li.on
+        {
+            color: white;
+            background-color: #d3d3d3;
+        }
+        .page1,.page2,.page4
+        {
+            margin-top:20px;
+        }
+        label
+        {
+            font-size: 18px;
+        }
+        #test-title
+        {
+            width:40%;
+        }
+        .time-edit-container
+        {
+            display: flex;
+        }
+        .time-edit-container input
+        {
+            width:30%;
+            margin-right:30px;
+        }
+        .spin
+        {
+            margin:20px 0 20px 0;
+        }
+        .question-type
+        {
+            position: relative;
+            width:150px;
+            display: block;
+            font-size: 15px;
+            border: 1px solid #d3d3d3;
+            padding: 5px;
+        }
+        .question-type-list
+        {
+            position: absolute;
+            z-index:99;
+            width:150px;
+            top:28px;
+            left:-1px;
+            border: 1px solid #d3d3d3;
+        }
+        .question-type-list span
+        {
+            display: block;
+            padding:5px;
+            border-top: 1px solid #d3d3d3;
+        }
+        .question-type-list span:nth-child(1)
+        {
+            border-top: none;
+        }
+        .type-btn
+        {
+            display: block;
+            width:32px;
+            height:32px;
+            background: url(img/down.png) no-repeat;
+            background-size:100% 100%;
+            position: absolute;
+            right:2px;
+            top:-2px;
+        }
+        .type-btn.on
+        {
+            background: url(img/up.png) no-repeat;
+        }
+        .question-type-list span
+        {
+            cursor: pointer;
+            background: #fff;
+        }
+        .question-type-list span:hover
+        {
+            color: white;
+            background-color: #d3d3d3;
+        }
+        .question-description
+        {
+            padding: 0;
+            display: block;
+            height:200px;
+            border: 1px solid #d3d3d3;
+            margin-bottom:30px;
+        }
+        .page2 h3
+        {
+            font-weight: bold;
+        }
+        .handle-btns
+        {
+            display: flex;
+            margin-bottom:30px;
+            justify-content: center;
+        }
+        .handle-btns button
+        {
+            margin-left:20px;
+            margin-right:20px;
+        }
+        .handle a
+        {
+            margin-right:5px;
+        }
+        #cartogram{
+            position: relative;
+            width:700px;
+            height:500px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]><p class="browser-tips">您的浏览器版本过低，请升级浏览器获得更好的体验<p><![endif]-->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.html" class="logo"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 main">
+                <section class="col-md-12 section1">
+                    <img src="img/demo.jpg" alt="用户头像" class="img-circle chathead">
+                    <div class="user-info col-md-8">
+                        <h2 class="user-name">用户名称</h2>
+                        <div class="test-info">
+                            <span class="all-tests">总课程数：</span>
+                            <span class="now-tests">有考试的课程：</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-12 section2">
+                    <ul class="s2-btns">
+                        <li class="on">主页</li>
+                        <li>发布考试</li>
+                        <li>编辑考试</li>
+                        <li>成绩分析</li>
+                    </ul>
+                </section>
+                <div class="col-md-12 pages page1">
+                    <h3>已经发布的考试</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered test-ing-table">
+                            <tr>
+                                <th>考试题目</th>
+                                <th>所属课程</th>
+                                <th>开始时间</th>
+                                <th>结束时间</th>
+                                <th>参考人数</th>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h3>已经结束的考试</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered test-end-table">
+                            <tr>
+                                <th>考试题目</th>
+                                <th>所属课程</th>
+                                <th>开始时间</th>
+                                <th>结束时间</th>
+                                <th>参考人数</th>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                                <td>22/44</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 pages page2" style="display: none;">
+                    <div class="edit-test-container">
+                        <form id="edit-test-form">
+                            <div class="form-group">
+                                <label for="考试题目">考试题目</label>
+                                <input type="text" class="form-control" id="test-title" placeholder="考试题目">
+                            </div>
+                            <div class="form-group">
+                                <label for="考试时间">考试时间</label>
+                                <div class="time-edit-container">
+                                    <input type="text" placeholder="请选择考试开始时间" class="form-control" id="datetime" readonly>
+                                    <input type="text" placeholder="请选择考试结束时间" class="form-control" id="datetime2" readonly>
+                                </div>
+                            </div>
+                            <div class="spin col-md-12" style="background: #d3d3d3;height: 1px;"></div>
+                            <div class="choice-question-edit">
+                                <div class="form-group">
+                                    <h3>选择题</h3>
+                                </div>
+                                <div class="choice-question">
+                                    <div class="form-group">
+                                        <label for="题目描述">请输入题目描述（支持输入多个题目，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="题目选项">请输入题目选项（多个选项之间用逗号隔开，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="题目答案">请输入题目答案（多个选项之间用逗号隔开，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                </div>
+                            </div>0
+                            <div class="judge-question-edit">
+                                <div class="form-group">
+                                    <h3>判断题</h3>
+                                </div>
+                                <div class="choice-question">
+                                    <div class="form-group">
+                                        <label for="题目描述">请输入题目描述（支持输入多个题目，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="题目答案">请输入题目答案（支持输入多个题目答案，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="objective-question-edit">
+                                <div class="form-group">
+                                    <h3>客观题</h3>
+                                </div>
+                                <div class="choice-question">
+                                    <div class="form-group">
+                                        <label for="题目描述">请输入题目描述（支持输入多个题目，使用回车换行）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="题目答案">请输入题目答案（可选，支持输入多个题目答案，使用回车换行，无答案行请置空）</label>
+                                        <div class="summernote"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="handle-btns">
+                                <a href="javascript:;" id="test" target="_blank" class="btn btn-success">预览试卷</a>
+                                <button type="button" class="btn btn-success">发布试卷</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12 pages page3" style="display: none;">
+                    <h3>所有考试</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered test-edit-table">
+                            <tr>
+                                <th>考试题目</th>
+                                <th>所属课程</th>
+                                <th>开始时间</th>
+                                <th>结束时间</th>
+                                <th>参考人数</th>
+                                <th>操作</th>
+                            </tr>
+                            <tr>
+                                <td class="test-name">测试考试1</td>
+                                <td class="lesson-name">测试课程1</td>
+                                <td class="start-time">2020年1月2日10:25:45</td>
+                                <td class="end-time">2020年1月3日10:25:49</td>
+                                <td class="people-num">22/44</td>
+                                <td class="handle"><a href="javascript:;">编辑</a><a href="javascript:;">发布考试</a><a href="javascript:;">结束考试</a></td>
+                            </tr>
+                            <tr>
+                                <td class="test-name">测试考试1</td>
+                                <td class="lesson-name">测试课程1</td>
+                                <td class="start-time">2020年1月2日10:25:45</td>
+                                <td class="end-time">2020年1月3日10:25:49</td>
+                                <td class="people-num">22/44</td>
+                                <td class="handle"><a href="javascript:;">编辑</a><a href="javascript:;">发布考试</a><a href="javascript:;">结束考试</a></td>
+                            </tr>
+                            <tr>
+                                <td class="test-name">测试考试1</td>
+                                <td class="lesson-name">测试课程1</td>
+                                <td class="start-time">2020年1月2日10:25:45</td>
+                                <td class="end-time">2020年1月3日10:25:49</td>
+                                <td class="people-num">22/44</td>
+                                <td class="handle"><a href="javascript:;">编辑</a><a href="javascript:;">发布考试</a><a href="javascript:;">结束考试</a></td>
+                            </tr>
+                            <tr>
+                                <td class="test-name">测试考试1</td>
+                                <td class="lesson-name">测试课程1</td>
+                                <td class="start-time">2020年1月2日10:25:45</td>
+                                <td class="end-time">2020年1月3日10:25:49</td>
+                                <td class="people-num">22/44</td>
+                                <td class="handle"><a href="javascript:;">编辑</a><a href="javascript:;">发布考试</a><a href="javascript:;">结束考试</a></td>
+                            </tr>
+                            <tr>
+                                <td class="test-name">测试考试1</td>
+                                <td class="lesson-name">测试课程1</td>
+                                <td class="start-time">2020年1月2日10:25:45</td>
+                                <td class="end-time">2020年1月3日10:25:49</td>
+                                <td class="people-num">22/44</td>
+                                <td class="handle"><a href="javascript:;">编辑</a><a href="javascript:;">发布考试</a><a href="javascript:;">结束考试</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 pages page4" style="display: none;">
+                    <div class="col-md-12 hidden-xs" id="cartogram"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/dateTime.min.js"></script>
+<script src="dist/summernote.js"></script>
+<script src="dist/lang/summernote-zh-CN.js"></script>
+<script>
+    $("#datetime").datetime({
+        type: "datetime",
+        value: [2020, 1, 1, 15, 30]
+    });
+    $("#datetime2").datetime({
+        type: "datetime",
+        value: [2020, 1, 1, 15, 30]
+    });
+    var myChart = echarts.init(document.getElementById('cartogram'));
+    var option = {
+        baseOption:{
+            title:{
+                text:'考试课程1'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['1', '2', '3', '4', '5', '6', '7','8','9','10'],
+                name:'顺序'
+            },
+            yAxis: {
+                type: 'value',
+                name:'分数'
+            },
+            series: [{
+                data: [78, 77, 90, 86, 70, 72, 87],
+                type: 'line',
+                label: {
+                    show: true,
+                },
+            }],
+        },
+};
+myChart.setOption(option);
+</script>
+<script>
+    $(function(){
+        $('.summernote').summernote({
+            height: 250,
+            tabsize: 2,
+            lang: 'zh-CN'
+        });
+    });
+    $(".s2-btns li").click(function(){
+        var liindex=$(this).index()+1;
+        $(".s2-btns li").removeClass("on");
+        $(this).addClass("on");
+        $(`.pages`).hide();
+        $(`.page${liindex}`).show();
+    });
+    $(".type-btn").click(function(){
+        if($(this).hasClass("on")==true)
+        {
+            $(this).removeClass("on");
+            $(".question-type-list").hide();
+        }
+        else
+        {
+            $(this).addClass("on");
+            $(".question-type-list").show();
+        }
+    });
+</script>
+</body>
+</html>

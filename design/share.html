@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="gbk"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta content="yes" name="mobile-web-app-capable">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="robots" content="all">
+    <meta name="author" content="Tencent-CP"/>
+    <meta name="Copyright" content="Tencent"/>
+    <title>欢乐麻将微社区</title>
+    <!-- 页面设计：微聚科技 | 页面制作：微聚科技 | 创建：2019-11-13-->
+    <script>
+        //屏幕适应
+        (function (win, doc) {
+            if (!win.addEventListener) return;
+            var html = document.documentElement;
+
+            function setFont() {
+                var html = document.documentElement;
+                var k = 750;
+                html.style.fontSize = html.clientWidth / k * 100 + "px";
+            }
+            setFont();
+            setTimeout(function () {
+                setFont();
+            }, 300);
+            doc.addEventListener('DOMContentLoaded', setFont, false);
+            win.addEventListener('resize', setFont, false);
+            win.addEventListener('load', setFont, false);
+        })(window, document);
+
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: url(//game.gtimg.cn/images/majiang/ingame/bg.jpg) no-repeat center/cover;
+            position: relative;
+        }
+        h1 {
+            text-indent: -9999rem;
+            width: 7.5rem;
+            height: 4.66rem;
+            background: url(//game.gtimg.cn/images/majiang/ingame/slogan.png) no-repeat center/cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        h2 {
+            text-indent: -9999rem;
+            width: 7.23rem;
+            height: 1.98rem;
+            background: url(//game.gtimg.cn/images/majiang/ingame/word.png) no-repeat center/cover;
+            position: absolute;
+            bottom: 6.08rem;
+            right: 0;
+        }
+        .majiang {
+            text-indent: -9999rem;
+            width: 3.39rem;
+            height: 3.81rem;
+            background: url(//game.gtimg.cn/images/majiang/ingame/majiang.png) no-repeat center/cover;
+            position: absolute;
+            bottom: 2.6rem;
+            right: 0;
+        }
+        .zhongdou {
+            text-indent: -9999rem;
+            width: 4.2rem;
+            height: 1.3rem;
+            background: url(//game.gtimg.cn/images/majiang/ingame/btn.png) no-repeat center/cover;
+            position: absolute;
+            bottom: .36rem;
+            left: calc(50% - 2.1rem);
+        }
+    </style>
+</head>
+<body>
+    <h1>欢乐豆田开张啦</h1>
+    <h2>天天来种豆,打牌不发愁！</h2>
+    <div class="majiang">麻将</div>
+    <a class="zhongdou" id="zhongdou" href="https://huanle.qq.com/m/mj/d/index.html?OpenGame?OpenLink?WebType=3&hasSign=0&apolloScale=2&url=https:///majiang.qq.com/ingame/all_v3/field.html" ontouchend="PTTSendClick('link', 'ljqwzd', '立即前往种豆');">立即前往种豆</a>
+    <!-- <a class="zhongdou" id="zhongdou" href="https://huanle.qq.com/m/mj/d/index.html?OpenGame?OpenLink?WebType=3&hasSign=0&apolloScale=2&url=https:///activitiestest.ingame.qq.com/ingame/majiang/ingame/all_v3/field.html" ontouchend="PTTSendClick('btn', 'ljqwzd', '立即前往种豆');">立即前往种豆</a> -->
+<script src="//game.gtimg.cn/images/js/zepto/zepto.min.js"></script>
+<script src="//ossweb-img.qq.com/images/js/PTT/ping_tcss_tgideas_https_min.js"></script>
+<script src="//ossweb-img.qq.com/images/js/TGMobileShare/TGMobileShare.min.js"></script>
+<script>
+    //此段代码不能放到外链JS中，
+    var setSite = { //设置网站属性
+        siteType: "os", //必填项:"os"代表是官网，如果不是，则填写actName例如a20160701xxx
+        pageType: "share", //必填项:本页面的定位；按照页面含义填写例如main||list||detail||download||share||page1||pageN
+        pageName: "豆田分享页", //必填项:页面中文名
+        project: "base", //选填项:如果是官网模块则是必填;按照模块内容，填写固定的对应值;原生官网base;微社区ingame;同人站doujin;赛事match;故事站story;文化站history;粉丝站fans;爆料站coming;论坛bbs;默认other;
+        osact: 'm' //选填项:是否是官网专题(在官网运营的专题)boolean；默认是0；可以在链接上加入参数osact=1来灵活设置
+    };
+    if (typeof(pgvMain) == 'function') pgvMain();//千万不能忘记！
+
+    TGMobileShare({
+        shareTitle: '欢乐麻将最新领豆技巧，你学会了吗？',
+        shareDesc: '有豆一时爽，一直有豆一直爽！点击这里获得免费领取欢乐豆方法！',
+        shareImgUrl: 'https://game.gtimg.cn/images/majiang/m/web201707/logo.png',
+        shareLink: '',
+        actName: 'a20191113share'
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人主页</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body
+        {
+            background: #fdfcf8;
+        }
+        header
+        {
+            border-bottom:1px solid #d3d3d3;
+            background: white;
+        }
+        .main
+        {
+            height:auto;
+            background: white;
+            border-left:1px solid #d3d3d3;
+            border-right:1px solid #d3d3d3;
+            border-bottom:1px solid #d3d3d3;
+        }
+        .section1
+        {
+            display: flex;
+            height:200px;
+            border-bottom: 1px solid #d3d3d3
+        }
+        .chathead
+        {
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin-top:40px;
+        }
+        .user-info
+        {
+            margin-left:30px;
+        }
+        .user-name
+        {
+            margin-top:40px;
+            margin-bottom:0;
+            padding-bottom:10px;
+            border-bottom:1px solid #ddd;
+        }
+        .test-info 
+        {
+            margin-top: 25px;
+
+        }
+        .test-info span
+        {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .section2
+        {
+            border-bottom: 1px solid #d3d3d3;
+        }
+        .s2-btns
+        {
+            padding:0;
+            display: flex;
+            margin-bottom: 0;
+            justify-content: space-between;
+            list-style-type: none;
+        }
+        .s2-btns li
+        {
+            display: block;
+            width: 25%;
+            height: 50px;
+            text-align: center;
+            font-size: 22px;
+            line-height: 50px;
+            border-right: 1px solid #d3d3d3;
+            cursor: pointer;
+        }
+        .s2-btns li:hover
+        {
+            color: white;
+            background-color: #d3d3d3;
+        }
+        .s2-btns li:nth-child(1)
+        {
+            border-left: 1px solid #d3d3d3;
+        }
+        .s2-btns li.on
+        {
+            color: white;
+            background-color: #d3d3d3;
+        }
+        .page1,.page2,.page4
+        {
+            margin-top:20px;
+        }
+        .lessons-container
+        {
+            display: flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+        }
+        .lesson
+        {
+            width: 30%;
+            height:300px;
+            border: solid 1px #ccc;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+        .lesson img
+        {
+            display: block;
+            width: 100%;
+        }
+        .lesson .btn
+        {
+            display: block;
+            margin: 0 auto;
+        }
+        .lesson .btns
+        {
+            display: flex;
+        }
+        #cartogram
+        {
+            width:100%;
+            margin-top:30px;
+        }
+        @media screen and (max-width: 768px) {
+            .section1
+            {
+                height:170px;
+            }
+            .user-name
+            {
+                font-size:20px;
+                font-weight: bold;
+            }
+            .user-info
+            {
+                margin-left: 10px;
+            }
+            .test-info
+            {
+                margin-top:10px;
+            }
+            .chathead
+            {
+                width:80px;
+                height: 80px;
+                margin-top:45px;
+            }
+            .s2-btns li
+            {
+                font-size: 16px;
+            }
+            h3
+            {
+                font-size: 16px;
+            }
+            .page2 .lesson
+            {
+                width:45%;
+                height: 250px;
+            }
+            .page4 .lesson
+            {
+                width:45%;
+                height: 300px;
+            }
+            .page4 .lesson .btns
+            {
+                flex-wrap:wrap;
+            }
+            .page4 .lesson .btns .btn
+            {
+                margin-bottom:10px;
+            }
+            .start-btn
+            {
+                margin-top:30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]><p class="browser-tips">您的浏览器版本过低，请升级浏览器获得更好的体验<p><![endif]-->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.html" class="logo"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 main">
+                <section class="col-md-12 section1">
+                    <img src="img/demo.jpg" alt="用户头像" class="img-circle chathead">
+                    <div class="user-info col-md-8">
+                        <h2 class="user-name">用户名称</h2>
+                        <div class="test-info">
+                            <span class="all-tests">总课程数：</span>
+                            <span class="now-tests">有考试的课程：</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-12 section2">
+                    <ul class="s2-btns">
+                        <li class="on">主页</li>
+                        <li>我的考试</li>
+                        <li>成绩分析</li>
+                        <li>我的收藏</li>
+                    </ul>
+                </section>
+                <div class="col-md-12 pages page1">
+                    <h3>正在进行中的考试</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered test-ing-table">
+                            <tr>
+                                <th>考试题目</th>
+                                <th>教学老师</th>
+                                <th>所属课程</th>
+                                <th>开始时间</th>
+                                <th>终止时间</th>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h3>已经结束的考试</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered test-end-table">
+                            <tr>
+                                <th>考试题目</th>
+                                <th>教学老师</th>
+                                <th>所属课程</th>
+                                <th>开始时间</th>
+                                <th>终止时间</th>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                            <tr>
+                                <td>测试考试1</td>
+                                <td>测试老师1</td>
+                                <td>测试课程1</td>
+                                <td>2020年1月2日10:25:45</td>
+                                <td>2020年1月3日10:25:49</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 pages page2" style="display: none;">
+                    <div class="lessons-container">
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success">开始考试</button>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success">开始考试</button>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success">开始考试</button>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success">开始考试</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 pages page3" style="display: none;">
+                    <div class="col-md-12 hidden-xs" id="cartogram" style="width:800px;height:500px;"></div>
+                </div>
+                <div class="col-md-12 pages page4" style="display: none;">
+                    <div class="lessons-container">
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <div class="btns">
+                                <button type="button" class="btn btn-success">查看详情</button>
+                                <button type="button" class="btn btn-success">重新测验</button>
+                            </div>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success start-btn">开始考试</button>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <div class="btns">
+                                <button type="button" class="btn btn-success">查看详情</button>
+                                <button type="button" class="btn btn-success">重新测验</button>
+                            </div>
+                        </div>
+                        <div class="lesson">
+                            <img src="img/lesson-demo.jpg" alt="课程图片">
+                            <h4>课程名称1</h4>
+                            <p>考试时间：<br><span>2019-04-28 14:30</span> 至 <span>2019-04-28 15:15</span></p>
+                            <button type="button" class="btn btn-success start-btn">开始考试</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('cartogram'));
+    var option = {
+    title:{
+        text:'考试课程1'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['2019/7/1', '2019/7/1', '2019/7/1', '2019/7/1', '2019/7/1', '2019/7/1', '2019/7/1'],
+        name:'考试时间'
+    },
+    yAxis: {
+        type: 'value',
+        name:'分数'
+    },
+    series: [{
+        data: [78, 77, 90, 86, 70, 72, 87],
+        type: 'line',
+        label: {
+            show: true,
+        },
+    }]
+};
+myChart.setOption(option);
+</script>
+<script>
+    $(".s2-btns li").click(function(){
+        var liindex=$(this).index()+1;
+        $(".s2-btns li").removeClass("on");
+        $(this).addClass("on");
+        $(`.pages`).hide();
+        $(`.page${liindex}`).show();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>考试系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        header
+        {
+            height:60px;
+        }
+        .account
+        {
+            height:60px;
+        }
+        .account span
+        {
+            display: block;
+            text-align: center;
+            margin-top:20px;
+            font-size:20px;
+        }
+        .kv
+        {
+            height:500px;
+            background: url(img/kv.jpg) no-repeat center;
+        }
+        .kv h1
+        {
+            color: white;
+            font-size:80px;
+            text-align: center;
+            margin-top:120px;
+        }
+        .kv h2
+        {
+            color: white;
+            font-size:30px;
+            text-align: center;
+            margin-top:70px;
+        }
+        a:hover
+        {
+            text-decoration: none;
+        }
+        .btns
+        {
+            margin-top:80px;
+        }
+        .btns a
+        {
+            display: block;
+            color: white;
+            background-color:#409eff;
+            text-align: center;
+            line-height:30px;
+            border-radius:5% 5%;
+            height:30px;
+        }
+        @media screen and (max-width:768px) {
+            header
+            {
+                height:80px;
+            }
+            .kv
+            {
+                height:600px;
+            }
+            .kv h1 {
+                font-size:40px;
+            }
+            .kv h2
+            {
+                font-size:24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 8]><p class="browser-tips">您的浏览器版本过低，请升级浏览器获得更好的体验<p><![endif]-->
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10">
+                    <a href="#" class="logo"></a>
+                </div>
+                <div class="col-md-2 hidden-xs account">
+                    <span><a href="login.html">登录</a> / <a href="register.html">注册</a></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid kv">
+        <div class="row">
+            <h1 class="col-md-12">云天考试系统</h1>
+            <h2 class="col-md-12">在线考试平台，题型丰富、性能稳定、支持多人在线考试</h2>
+        </div>
+        <div class="visible-xs-block btns">
+            <a href="login.html" class="col-xs-3">登录</a>
+            <a href="register.html" class="col-xs-3 col-xs-offset-6">注册</a>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
