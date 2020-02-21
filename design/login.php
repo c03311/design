@@ -1,1 +1,0 @@
-欢迎<?php echo $_POST["username"]; ?>!<br>
