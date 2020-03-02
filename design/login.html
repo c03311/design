@@ -92,36 +92,37 @@
 <script src="js/bootstrap.min.js"></script>
 <script>
     $("form").submit(function(){
-        $.ajax({
+        if($("#username").val()=="")
+        {
+            alert("请输入用户名！")
+        }
+        else if($("#password").val()=="")
+        {
+            alert("请输入密码！")
+        }
+        else
+        {
+            $.ajax({
             type:"POST",
-            url:"login.php",
+            url:"php/login.php",
             data: $("form").serialize(),
             success: function (result) {
-                if(result=="Error1")
+                console.log(result);
+                if(result=="Error1 ")
                 {
                     alert("用户名不存在！");
                 }
-                else if(result="Error2")
+                else if(result=="Error2 ")
                 {
-                    alert("密码错误");
-                }
-                else
-                {
-                    var idcheck=result.indexOf("T")
-                    if(idcheck==-1)
-                    {
-                        window.location.href="personalpage.html?id"+result;
-                    }
-                    else
-                    {
-                        window.location.href="teacherpage.html?id"+result;
-                    }
+                    alert("密码错误！");
                 }
             },
             error : function() {
                 alert("网络异常，请稍后再试！");
             }
         });
+        }
+
     });
 </script>
 </body>

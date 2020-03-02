@@ -1,25 +1,32 @@
 <?php
-    $namesearch=$_POST["username"];
-    $passwordsearch=$_POST["password"];
-    $m = new MongoClient();    // 连接到mongodb
-    $db = $m->UserInfo;            // 选择一个数据库
-    $collection = $db->Users; // 选择集合
-    $cursor = $collection->find($namesearch);
-    if($cursor==null)
-    {
-        echo "Error1" //错误状态1，未找到用户
+    $username=$_POST["username"];
+    $password=$_POST["password"];
+    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");  
+    $bulk = new MongoDB\Driver\BulkWrite;
+    // 查询数据
+    $filter =  ['User-Account'=>$username]; //查询条件 user_id大于0
+    $options = [
+    'projection' => ['_id' => 0], //不输出_id字段
+    'sort' => ['User-Account'=>1] //根据user_id字段排序 1是升序，-1是降序
+    ];
+    $query = new MongoDB\Driver\Query($filter, $options);
+    $cursor = $manager->executeQuery('Users.Students', $query);
+    $result=[];
+    foreach ($cursor as $document) {
+        $document=json_encode($document);
+        $result=json_decode($document,true);
     }
-    else if($cursor!=null)
+    if(count($result)==0)
     {
-        if($cursor["password"]!=$passwordsearch) //错误状态2，密码错误
-        {
-            echo "Error2"
-        }
-        else
-        {
-            $userid=$cursor["User-ID"]; //成功找到用户，将用户ID返回至前端
-            echo $userid;
-        }
+        echo "Error1";
+    }
+    else if($result["User-Password"]!=$password)
+    {
+        echo "Error2";
+    }
+    else
+    {
+        print_r($result);
     }
 ?>
  
