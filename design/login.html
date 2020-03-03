@@ -76,9 +76,6 @@
         <h1 class="col-md-12">登录</h1>
         <form class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2" method="post" action="javascript:;" id="form1">
             <div class="form-group">
-                <input type="text" name="organization" class="form-control" id="organization" placeholder="请输入在线教育机构/学校">
-            </div>
-            <div class="form-group">
                 <input type="text" name="username" class="form-control" id="username" placeholder="用户名">
             </div>
             <div class="form-group">
@@ -115,6 +112,10 @@
                 else if(result=="Error2 ")
                 {
                     alert("密码错误！");
+                }
+                else
+                {
+                    window.location.href="personalpage.html"
                 }
             },
             error : function() {

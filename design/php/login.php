@@ -10,7 +10,7 @@
     'sort' => ['User-Account'=>1] //根据user_id字段排序 1是升序，-1是降序
     ];
     $query = new MongoDB\Driver\Query($filter, $options);
-    $cursor = $manager->executeQuery('Users.Students', $query);
+    $cursor = $manager->executeQuery('Users.Students', $query); 
     $result=[];
     foreach ($cursor as $document) {
         $document=json_encode($document);
@@ -28,5 +28,5 @@
     {
         print_r($result);
     }
-?>
+ ?>
  
