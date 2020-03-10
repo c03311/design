@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="dist/summernote.css">
+    <style>
+        body
+        {
+            background: #fdfcf8;
+        }
+        .main
+        {
+            height:auto;
+            background: white;
+            border:1px solid #d3d3d3;
+        }
+        .section
+        {
+            height:200px;
+            border-bottom: 1px solid #d3d3d3
+        }
+        .section.judge
+        {
+            height:150px;
+        }
+        .section.subject
+        {
+            height:100%;
+        }
+        .section h3
+        {
+            width:100%;
+        }
+        .options
+        {
+            display: flex;
+        }
+        .options p
+        {
+            margin-left:5px;
+        }
+        .question
+        {
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="margin-top:10px;">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 main">
+                <section class="overhide" style="display: none;"></section>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script>
+    <script>
+    $(document).ready(function(){
+        var url=window.location.href;
+        var paperid=url.slice(url.indexOf("=")+1,url.length);
+        $.ajax({
+            type:"POST",
+            url:"php/test-paper.php",
+            data: {paperid:paperid},
+            success: function (result) {
+                console.log(JSON.parse(result));
+                var paper=JSON.parse(result);
+                for(let i=0;i<paper.Questions.length;i++)
+                {
+                    if(paper.Questions[i].QuestionType=="单选题")
+                    {
+                        $("section:last").after(`
+                        <section class="col-md-12 section single-choose">
+                            <h3>${i+1}.${paper.Questions[i].QuestionTitle}</h3>
+                            <div class="question">
+                                <div class="options">
+                                    <input type="radio" value="A" name="option1">
+                                    <p><span>A、</span>${paper.Questions[i].QuestionOptions[0]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="radio" value="B" name="option1">
+                                    <p><span>B、</span>${paper.Questions[i].QuestionOptions[1]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="radio" value="C" name="option1">
+                                    <p><span>C、</span>${paper.Questions[i].QuestionOptions[2]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="radio" value="D" name="option1">
+                                    <p><span>D、</span>${paper.Questions[i].QuestionOptions[3]}</p>
+                                </div>
+                            </div>
+                        </section>
+                        `);
+                    }
+                    else if(paper.Questions[i].QuestionType=="多选题")
+                    {
+                        $("section:last").after(`
+                        <section class="col-md-12 section choose">
+                            <h3>${i+1}.${paper.Questions[i].QuestionTitle}</h3>
+                            <div class="question">
+                                <div class="options">
+                                    <input type="checkbox" value="A" name="option2">
+                                    <p><span>A、</span>${paper.Questions[i].QuestionOptions[0]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="checkbox" value="B" name="option2">
+                                    <p><span>B、</span>${paper.Questions[i].QuestionOptions[1]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="checkbox" value="C" name="option2">
+                                    <p><span>C、</span>${paper.Questions[i].QuestionOptions[2]}</p>
+                                </div>
+                                <div class="options">
+                                    <input type="checkbox" value="D" name="option2">
+                                    <p><span>D、</span>${paper.Questions[i].QuestionOptions[3]}</p>
+                                </div>
+                            </div>
+                        </section>
+                        `);
+                    }
+                    else if(paper.Questions[i].QuestionType=="判断题")
+                    {
+                        $("section:last").after(`
+                        <section class="col-md-12 section judge">
+                            <h3>${i+1}.${paper.Questions[i].QuestionTitle}</h3>
+                            <div class="question">
+                                <div class="options">
+                                    <input type="radio" value="true" name="option3">
+                                    <p>√</p>
+                                </div>
+                                <div class="options">
+                                    <input type="radio" value="false" name="option3">
+                                    <p>X</p>
+                                </div>
+                            </div>
+                        </section>
+                        `);
+                    }
+                    else if(paper.Questions[i].QuestionType=="主观题")
+                    {
+                        $("section:last").after(`
+                        <section class="col-md-12 section subject">
+                            <h3>${i+1}.${paper.Questions[i].QuestionTitle}</h3>
+                            <div class="question">
+                                <div class="summernote"></div>
+                            </div>
+                        </section>
+                        `);
+                        $('.summernote').summernote({
+                            height: 250,
+                            tabsize: 2,
+                            lang: 'zh-CN'
+                        });
+                    }
+                }
+                $("section:last").after(`<input type="submit" value="提交" class="submit">`);
+                $(".submit").on("click",function(){
+                    var answers=[];
+                    var questions=$("section");
+                    for(i=1;i<questions.length;i++)
+                    {
+                        if($(`section:eq(${i})`).hasClass("single-choose")==true||$(`section:eq(${i})`).hasClass("judge")==true)
+                        {
+                            var option=$(`section:eq(${i}) input[type='radio']:checked`).val();
+                            answers.push(option);
+                        }
+                        else if($(`section:eq(${i})`).hasClass("choose")==true)
+                        {
+                            var option2=[];
+                            $(`section:eq(${i}) input[type='checkbox']:checked`).each(function(){
+                                option2.push($(this).val());
+                            });
+                            answers.push(option2);
+                        }
+                        else if($(`section:eq(${i})`).hasClass("subject")==true)
+                        {
+                            var option=$(`section:eq(${i}) .summernote`).summernote('code');
+                            answers.push(option);
+                        }
+                    }
+                    console.log(answers);
+                    answers=JSON.stringify(answers);
+                    $.ajax({
+                        type:"POST",
+                        url:"php/Test.php",
+                        data: {answers:answers,paperid:paperid},
+                        success: function (result) {
+                            console.log(result);
+                        },
+                        error : function() {
+                            alert("网络异常，请稍后再试！");
+                        }
+                    });
+                });
+            },
+            error : function() {
+                alert("网络异常，请稍后再试！");
+            }
+        });
+    });
+
+    </script>
+</body>
+</html>
